@@ -3,12 +3,23 @@ const typeDefs = gql`
     type Story {
         by: String
         descendants: Int
+        id: Int
         kids: [Int]
         score: Int
         time: Int
         title: String
         Type: String
         url: String
+        comments(first: Int!): [Comment]
+    }
+    type Comment {
+        by: String
+        id: Int
+        kids: [Int]
+        parent: Int
+        text: String
+        time: Int
+        type: String
     }
     type Author {
         id: Int!

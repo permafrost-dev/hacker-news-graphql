@@ -10,7 +10,7 @@
         "lint:fix": "./node_modules/.bin/eslint --ext ts,js --fix src/",
         "lint:staged": "./node_modules/.bin/lint-staged",
         "fix": "npm run fmt && npm run lint:fix",
-        "build:dev": "./node_modules/.bin/esbuild --platform=node --target=node14 --define:__APP_VERSION__=\"'1.0'\" --format=cjs --bundle --outdir=dist src/index.js",
+        "build:dev": "./node_modules/.bin/esbuild --platform=node --target=node14 --format=cjs --bundle --tsconfig=./tsconfig.json --outdir=dist src/index.js",
         "prepare": "husky install"
     },
     "main": "index.js",
@@ -26,6 +26,7 @@
     "dependencies": {
         "@tinyhttp/app": "^1.3.7",
         "apollo-server-express": "^2.25.0",
+        "axios": "^0.21.1",
         "body-parser": "^1.19.0",
         "express-graphql": "^0.12.0",
         "graphql": "^15.5.0",
