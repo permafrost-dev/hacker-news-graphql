@@ -1,6 +1,7 @@
 {
-    "name": "permafrost-dev/hackernews-graphql",
+    "name": "hackernews-graphql-permafrost-dev",
     "private": true,
+    "license": "MIT",
     "scripts": {
         "start": "npm run build && node dist/index.js",
         "test": "./node_modules/.bin/jest tests --verbose",
@@ -13,7 +14,7 @@
         "build": "./node_modules/.bin/esbuild --platform=node --target=node14 --format=cjs --bundle --tsconfig=./tsconfig.json --outdir=dist src/index.js",
         "prepare": "husky install"
     },
-    "main": "index.js",
+    "main": "dist/index.js",
     "lint-staged": {
         "*.{js,ts}": [
             "./node_modules/.bin/prettier --config .prettierrc --write",
