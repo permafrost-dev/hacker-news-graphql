@@ -3,12 +3,12 @@ const typeDefs = gql`
     type Story {
         by: String
         descendants: Int
-        id: Int
+        id: Int!
         kids: [Int]
         score: Int
         time: Int
         title: String
-        Type: String
+        type: String
         url: String
         comments(first: Int!): [Comment]
     }
@@ -21,36 +21,17 @@ const typeDefs = gql`
         time: Int
         type: String
     }
-    type Author {
-        id: Int!
-        firstName: String
-        lastName: String
-        posts: [Post]
-    }
-    type Post {
-        id: Int!
-        title: String
-        authorId: ID!
-        votes: Int
-        author: Author
-    }
-    input PostData {
-        id: Int!
-        title: String
-        authorId: ID!
-        votes: Int
-    }
-    type Response {
-        success: Boolean
+    type User {
+        about: String
+        created: Int
+        delay: Int
+        id: String!
+        karma: Int
+        submitted: [Int]
     }
     type Query {
-        posts: [Post]
-        authors(first: Int!): [Author]
-        author(id: Int!): Author
         stories(first: Int!): [Story]
-    }
-    type Mutation {
-        createPost(post: PostData): Response
+        user(id: String!): User
     }
 `;
 export default typeDefs;

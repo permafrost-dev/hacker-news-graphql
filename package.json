@@ -2,7 +2,7 @@
     "name": "permafrost-dev/hackernews-graphql",
     "private": true,
     "scripts": {
-        "start": "npm run build:dev && node dist/index.js",
+        "start": "npm run build && node dist/index.js",
         "test": "./node_modules/.bin/jest tests --verbose",
         "test:coverage": "./node_modules/.bin/jest tests --coverage",
         "fmt": "./node_modules/.bin/prettier --config .prettierrc --write 'src/**/*.{js,ts,json,yml,yaml}' 'tests/**/*.{js,ts,json,yml,yaml}' './*.{js,yml,yaml}'",
@@ -10,7 +10,7 @@
         "lint:fix": "./node_modules/.bin/eslint --ext ts,js --fix src/",
         "lint:staged": "./node_modules/.bin/lint-staged",
         "fix": "npm run fmt && npm run lint:fix",
-        "build:dev": "./node_modules/.bin/esbuild --platform=node --target=node14 --format=cjs --bundle --tsconfig=./tsconfig.json --outdir=dist src/index.js",
+        "build": "./node_modules/.bin/esbuild --platform=node --target=node14 --format=cjs --bundle --tsconfig=./tsconfig.json --outdir=dist src/index.js",
         "prepare": "husky install"
     },
     "main": "index.js",

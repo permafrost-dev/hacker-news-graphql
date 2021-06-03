@@ -1,6 +1,7 @@
 import { MemoryCache } from './MemoryCache';
 import { getResolver as getStoriesResolver } from './resolvers/stories';
 import { getResolver as getCommentsResolver } from './resolvers/comments';
+import { getResolver as getUserResolver } from './resolvers/user';
 
 const topStoryIds: number[] = [];
 const topStories: Record<string, any>[] = [];
@@ -8,10 +9,12 @@ const cache = new MemoryCache();
 
 const storiesResolver = getStoriesResolver(topStoryIds, topStories, cache);
 const commentsResolver = getCommentsResolver(cache);
+const userResolver = getUserResolver(cache);
 
 export default {
     Query: {
         stories: storiesResolver,
+        user: userResolver,
     },
     Story: {
         comments: commentsResolver,
