@@ -11,7 +11,7 @@ import typeDefs from './typedef.js';
 import resolvers from './resolver.js';
 
 const app = new App();
-const port = parseInt(process.env.PORT) || 3030;
+const port = parseInt(process.env.PORT) || 3000;
 
 /*
 const schema = graphql.buildSchema(`
