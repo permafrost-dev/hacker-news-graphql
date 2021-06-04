@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it retrieves each story and caches it 1`] = `
+Object {
+  "newstory:27397208": Object {
+    "expires": 0,
+    "ts": 0,
+    "value": Object {
+      "by": "brundolf",
+      "descendants": 35,
+      "id": 27397208,
+      "kids": Array [
+        27397733,
+        27397758,
+        27398262,
+        27397815,
+        27398632,
+        27398080,
+        27397746,
+      ],
+      "score": 331,
+      "time": 1622831487,
+      "title": "Pokegb: A gameboy emulator that only plays Pokémon Blue, in 68 lines of C++",
+      "type": "story",
+      "url": "https://binji.github.io/posts/pokegb/",
+    },
+  },
+  "newstory:27399416": Object {
+    "expires": 0,
+    "ts": 0,
+    "value": Object {
+      "by": "tosh",
+      "descendants": 65,
+      "id": 27399416,
+      "kids": Array [
+        27400240,
+        27399935,
+        27399745,
+        27399824,
+        27399455,
+        27399804,
+        27399957,
+        27399894,
+        27399952,
+        27399844,
+        27399618,
+        27399809,
+        27399554,
+        27400151,
+      ],
+      "score": 110,
+      "time": 1622843033,
+      "title": "John Carmack on JPEG",
+      "type": "story",
+      "url": "https://twitter.com/ID_AA_Carmack/status/1400930510671601666",
+    },
+  },
+  "newstoryids:2": Object {
+    "expires": 0,
+    "ts": 0,
+    "value": Array [
+      27399416,
+      27397208,
+    ],
+  },
+}
+`;
+
+exports[`it retrieves the story data and returns it 1`] = `
+Array [
+  Object {
+    "by": "tosh",
+    "descendants": 65,
+    "expires": 0,
+    "id": 27399416,
+    "kids": Array [
+      27400240,
+      27399935,
+      27399745,
+      27399824,
+      27399455,
+      27399804,
+      27399957,
+      27399894,
+      27399952,
+      27399844,
+      27399618,
+      27399809,
+      27399554,
+      27400151,
+    ],
+    "score": 110,
+    "time": 1622843033,
+    "title": "John Carmack on JPEG",
+    "ts": 0,
+    "type": "story",
+    "url": "https://twitter.com/ID_AA_Carmack/status/1400930510671601666",
+  },
+  Object {
+    "by": "brundolf",
+    "descendants": 35,
+    "expires": 0,
+    "id": 27397208,
+    "kids": Array [
+      27397733,
+      27397758,
+      27398262,
+      27397815,
+      27398632,
+      27398080,
+      27397746,
+    ],
+    "score": 331,
+    "time": 1622831487,
+    "title": "Pokegb: A gameboy emulator that only plays Pokémon Blue, in 68 lines of C++",
+    "ts": 0,
+    "type": "story",
+    "url": "https://binji.github.io/posts/pokegb/",
+  },
+]
+`;

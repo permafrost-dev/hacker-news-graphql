@@ -1,0 +1,11 @@
+{
+    "by": "brundolf",
+    "descendants": 35,
+    "id": 27397208,
+    "kids": [27397733, 27397758, 27398262, 27397815, 27398632, 27398080, 27397746],
+    "score": 331,
+    "time": 1622831487,
+    "title": "Pokegb: A gameboy emulator that only plays Pokémon Blue, in 68 lines of C++",
+    "type": "story",
+    "url": "https://binji.github.io/posts/pokegb/"
+}
