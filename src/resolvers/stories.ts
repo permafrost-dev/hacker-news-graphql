@@ -11,7 +11,7 @@ export function getResolver(topStoryIds, topStories, cache: any): any {
         const topstoryCacheKey = `${kind}storyids:${first}`;
 
         if (!cache.has(topstoryCacheKey)) {
-            console.log(`getting ${kind}storyids from URL...`);
+            // console.log(`getting ${kind}storyids from URL...`);
 
             const resp = await axios.get(`https://hacker-news.firebaseio.com/v0/${kind}stories.json?limitToFirst=${first}&orderBy="$key"`);
             const data: number[] = resp.data;
@@ -31,7 +31,7 @@ export function getResolver(topStoryIds, topStories, cache: any): any {
                     return null;
                 }
 
-                console.log(`getting story ${id} from URL...`);
+                // console.log(`getting story ${id} from URL...`);
 
                 return axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
             })

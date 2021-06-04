@@ -5,10 +5,10 @@ export const scalarType = new GraphQLScalarType({
     description: 'Date custom scalar type',
     serialize(value) {
         const date = new Date(Number(value) * 1000);
-        return date.toISOString(); // Convert outgoing Date to integer for JSON
+        return date.toISOString();
     },
     parseValue(value) {
-        return new Date(value); // Convert incoming integer to Date
+        return new Date(value);
     },
     parseLiteral(ast) {
         if (ast.kind === Kind.INT) {
