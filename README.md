@@ -1,5 +1,9 @@
 # Hacker News GraphQL server
 
+<p align="center">
+    <img src="https://codecov.io/gh/permafrost-dev/hacker-news-graphql/branch/main/graph/badge.svg?token=7QchRpYsX1" alt="codecov" />
+</p>
+
 ## Development setup
 
 ```bash
