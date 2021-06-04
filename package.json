@@ -3,7 +3,8 @@
     "private": true,
     "license": "MIT",
     "scripts": {
-        "start": "npm run build && node dist/index.js",
+        "start": "npm run start:dev",
+        "start:dev": "NODE_ENV=development npm run build && node dist/index.js",
         "start:prod": "NODE_ENV=production node dist/index.js",
         "test": "./node_modules/.bin/jest tests --verbose",
         "test:coverage": "./node_modules/.bin/jest tests --coverage",
