@@ -8,7 +8,8 @@ export function getResolver(cache: any): any {
             return cache.get(userCacheKey);
         }
 
-        const resp = await axios.get(`https://hacker-news.firebaseio.com/v0/user/${parent.by}.json`);
+        const url = `${process.env.HACKERNEWS_API_URL}/user/${parent.by}.json`;
+        const resp = await axios.get(url);
 
         cache.put(userCacheKey, resp.data, 3600);
 
