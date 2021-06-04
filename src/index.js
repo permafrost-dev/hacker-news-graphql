@@ -37,7 +37,8 @@ app.use(
 app.use(bodyParser.json());
 
 const server = new ApolloServer({
-    introspection: true,
+    introspection: false,
+    graphiql: process.env.NODE_ENV === 'development',
     typeDefs,
     resolvers,
     formatError: error => {
