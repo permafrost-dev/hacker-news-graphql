@@ -7,6 +7,7 @@ import resolvers from './resolver';
 require('dotenv').config();
 
 const app = new App();
+
 const port = parseInt(process.env.PORT) || 3000;
 const isDevelopmentMode = process.env.NODE_ENV === 'development';
 
