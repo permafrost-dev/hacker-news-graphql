@@ -3,11 +3,13 @@ import { getResolver as getCommentsResolver } from './resolvers/comments';
 import { getResolver as getStoriesResolver } from './resolvers/stories';
 import { getResolver as getStoryAuthorResolver } from './resolvers/Story/author';
 import { getResolver as getUserResolver } from './resolvers/user';
-import { scalarType as dateScalar } from './scalars/Date';
+import { getScalarType as getDateScalar } from './scalars/Date';
 
 const storyIds: number[] = [];
 const stories: Record<string, any>[] = [];
 const cache = new MemoryCache();
+
+const dateScalar = getDateScalar();
 
 const resolvers = {
     query: {
