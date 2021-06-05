@@ -26,7 +26,8 @@
             "./node_modules/.bin/prettier --config .prettierrc --write"
         ],
         "*.{graphql,gql}": [
-            "./node_modules/.bin/format-graphql --write=true"
+            "./node_modules/.bin/prettier --config .prettierrc --write",
+            "./node_modules/.bin/format-graphql --write=true "
         ]
     },
     "dependencies": {
