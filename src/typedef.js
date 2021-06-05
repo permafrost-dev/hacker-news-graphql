@@ -19,6 +19,7 @@ const typeDefs = gql`
         url: String
         comments(first: Int!): [Comment]
         author: User
+        commentCount: Int!
     }
     type Comment {
         by: String
@@ -28,6 +29,7 @@ const typeDefs = gql`
         text: String
         time: Date
         type: String
+        author: User
     }
     type User {
         about: String

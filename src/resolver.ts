@@ -2,6 +2,7 @@ import { MemoryCache } from './MemoryCache';
 import { getResolver as getCommentsResolver } from './resolvers/comments';
 import { getResolver as getStoriesResolver } from './resolvers/stories';
 import { getResolver as getStoryAuthorResolver } from './resolvers/Story/author';
+import { getResolver as getCommentCountResolver } from './resolvers/Story/commentCount';
 import { getResolver as getUserResolver } from './resolvers/user';
 import { getScalarType as getDateScalar } from './scalars/Date';
 
@@ -19,6 +20,10 @@ const resolvers = {
     story: {
         author: getStoryAuthorResolver(cache),
         comments: getCommentsResolver(cache),
+        commentCount: getCommentCountResolver(cache),
+    },
+    comment: {
+        author: getStoryAuthorResolver(cache),
     },
 };
 
@@ -31,5 +36,9 @@ export default {
     Story: {
         author: resolvers.story.author,
         comments: resolvers.story.comments,
+        commentCount: resolvers.story.commentCount,
+    },
+    Comment: {
+        author: resolvers.comment.author,
     },
 };
