@@ -14,9 +14,9 @@ export function getResolver(cache: any): any {
 
         for (const id of commentIds) {
             if (!cache.has(`comment:${id}`)) {
-                console.log(`getting comment ${id} from URL...`);
+                // console.log(`getting comment ${id} from URL...`);
 
-                const commentResp = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+                const commentResp = await axios.get(`${process.env.HACKERNEWS_API_URL}/item/${id}.json`);
                 const commentData: Record<string, any>[] = commentResp.data;
 
                 cache.put(`comment:${id}`, commentData, 3600);

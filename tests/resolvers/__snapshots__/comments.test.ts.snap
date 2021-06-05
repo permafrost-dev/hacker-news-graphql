@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it retrieves the comment data and returns it 1`] = `
+Array [
+  Object {
+    "by": "mettamage",
+    "id": 27397733,
+    "kids": Array [
+      27397940,
+      27397843,
+      27398125,
+      27398799,
+    ],
+    "parent": 27397208,
+    "text": "You might want to add (obfuscated) to the title. The actual source code, while small, is much larger [1]. (edit: at 589 lines it&#x27;s still impressive!)<p>For people who like this kind of thing and&#x2F;or for people who want to be able to understand what is going on at all, you might like the course NAND2Tetris [2]. It&#x27;s a good prerequisite to understanding this blog post if computer systems isn&#x27;t a topic that one has explored before.<p>[1] <a href=\\"https:&#x2F;&#x2F;gist.github.com&#x2F;binji&#x2F;395669d45e9005950232043ab4378abe\\" rel=\\"nofollow\\">https:&#x2F;&#x2F;gist.github.com&#x2F;binji&#x2F;395669d45e9005950232043ab4378a...</a> -- the author notes this in the article.<p>[2] <a href=\\"https:&#x2F;&#x2F;www.nand2tetris.org&#x2F;\\" rel=\\"nofollow\\">https:&#x2F;&#x2F;www.nand2tetris.org&#x2F;</a>",
+    "time": 1622833637,
+    "type": "comment",
+  },
+]
+`;
