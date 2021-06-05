@@ -6,6 +6,16 @@
 
 ## Development setup
 
+Create a `.env` file in the project directory:
+
+```
+NODE_ENV=development
+PORT=3000
+HACKERNEWS_API_URL=https://hacker-news.firebaseio.com/v0
+```
+
+Then install the dependencies and run `start:dev`, which both builds the application using `esbuild` and runs it:
+
 ```bash
 npm install
 npm run start:dev
@@ -30,3 +40,19 @@ query {
   }
 }
 ```
+
+
+## Running tests
+
+To run the tests successfully, you need to start the test http server first, which returns the data stored in `tests/fixtures`.
+
+Once the test http server is running, you may run the jest test suite using `npm run test`.
+
+```bash
+cd tests/server
+npm install
+cd -
+node tests/server/index.js &
+npm run test
+```
+
