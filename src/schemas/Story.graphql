@@ -1,0 +1,14 @@
+    type Story {
+        by: String
+        descendants: Int
+        id: Int!
+        kids: [Int]
+        score: Int
+        time: Date
+        title: String
+        type: String
+        url: String
+        comments(first: Int!): [Comment]
+        author: User
+        commentCount: Int!
+    }

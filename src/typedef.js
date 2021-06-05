@@ -1,4 +1,15 @@
 import { gql } from 'apollo-server-express';
+
+const typeDefs = [
+    gql(require('./schemas/Comment.graphql')),
+    gql(require('./schemas/Date.graphql')),
+    gql(require('./schemas/Query.graphql')),
+    gql(require('./schemas/Story.graphql')),
+    gql(require('./schemas/StoryType.graphql')),
+    gql(require('./schemas/User.graphql')),
+];
+
+/*
 const typeDefs = gql`
     scalar Date
 
@@ -44,4 +55,5 @@ const typeDefs = gql`
         user(id: String!): User
     }
 `;
+*/
 export default typeDefs;

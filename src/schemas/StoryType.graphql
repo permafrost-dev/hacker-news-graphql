@@ -1,0 +1,5 @@
+    enum StoryType {
+        BEST
+        NEW
+        TOP
+    }

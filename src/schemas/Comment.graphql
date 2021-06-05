@@ -1,0 +1,10 @@
+type Comment {
+  author: User
+  by: String
+  id: Int!
+  kids: [Int]
+  parent: Int
+  text: String
+  time: Date
+  type: String
+}
