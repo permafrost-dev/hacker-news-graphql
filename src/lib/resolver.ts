@@ -1,10 +1,10 @@
-import { MemoryCache } from './MemoryCache';
-import { getResolver as getCommentsResolver } from './resolvers/comments';
-import { getResolver as getStoriesResolver } from './resolvers/stories';
-import { getResolver as getStoryAuthorResolver } from './resolvers/Story/author';
-import { getResolver as getCommentCountResolver } from './resolvers/Story/commentCount';
-import { getResolver as getUserResolver } from './resolvers/user';
-import { getScalarType as getDateScalar } from './scalars/Date';
+import { MemoryCache } from '@/MemoryCache';
+import { getResolver as getCommentsResolver } from '@/resolvers/comments';
+import { getResolver as getStoriesResolver } from '@/resolvers/stories';
+import { getResolver as getStoryAuthorResolver } from '@/resolvers/Story/author';
+import { getResolver as getCommentCountResolver } from '@/resolvers/Story/commentCount';
+import { getResolver as getUserResolver } from '@/resolvers/user';
+import { getScalarType as getDateScalar } from '@/scalars/Date';
 
 const storyIds: number[] = [];
 const stories: Record<string, any>[] = [];
