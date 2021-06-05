@@ -1,5 +1,5 @@
-    enum StoryType {
-        BEST
-        NEW
-        TOP
-    }
+enum StoryType {
+    BEST
+    NEW
+    TOP
+}

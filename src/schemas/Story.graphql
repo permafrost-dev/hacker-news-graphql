@@ -1,14 +1,14 @@
-    type Story {
-        by: String
-        descendants: Int
-        id: Int!
-        kids: [Int]
-        score: Int
-        time: Date
-        title: String
-        type: String
-        url: String
-        comments(first: Int!): [Comment]
-        author: User
-        commentCount: Int!
-    }
+type Story {
+    author: User
+    by: String
+    commentCount: Int!
+    comments(first: Int!): [Comment]
+    descendants: Int
+    id: Int!
+    kids: [Int]
+    score: Int
+    time: Date
+    title: String
+    url: String
+    type: String
+}

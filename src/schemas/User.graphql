@@ -1,8 +1,8 @@
-    type User {
-        about: String
-        created: Date
-        delay: Int
-        id: String!
-        karma: Int
-        submitted: [Int]
-    }
+type User {
+    about: String
+    created: Date
+    delay: Int
+    id: String!
+    karma: Int
+    submitted: [Int]
+}
