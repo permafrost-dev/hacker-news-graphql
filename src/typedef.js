@@ -26,7 +26,7 @@ const typeDefs = gql`
         kids: [Int]
         parent: Int
         text: String
-        time: Int
+        time: Date
         type: String
     }
     type User {

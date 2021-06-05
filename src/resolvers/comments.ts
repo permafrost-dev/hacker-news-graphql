@@ -10,7 +10,7 @@ export function getResolver(cache: any): any {
             return new Promise(resolve => resolve([]));
         }
 
-        const commentIds = parent.kids.slice(0, 1);
+        const commentIds = parent.kids.slice(0, first);
 
         for (const id of commentIds) {
             if (!cache.has(`comment:${id}`)) {
