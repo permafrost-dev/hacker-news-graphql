@@ -9,7 +9,7 @@ export function getResolver(cache: MemoryCache): any {
             return cache.get(`user:${id}`);
         }
 
-        const resp = await axios.get(`https://hacker-news.firebaseio.com/v0/user/${id}.json`);
+        const resp = await axios.get(`${process.env.HACKERNEWS_API_URL}/user/${id}.json`);
 
         cache.put(`user:${id}`, resp.data, 3600);
 

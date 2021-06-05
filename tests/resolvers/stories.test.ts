@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
-import { MemoryCache } from '../../src/MemoryCache';
-import { getResolver } from '../../src/resolvers/stories';
+import { MemoryCache } from '@/MemoryCache';
+import { getResolver } from '@/resolvers/stories';
 
 let cache: MemoryCache;
 let resolver: any;
@@ -19,7 +19,7 @@ it('it retrieves the story data and returns it', async () => {
     const data = await resolver({}, { first: 2, kind: 'NEW' });
 
     for (const item of data) {
-        item.ts = 0;
+        //item.ts = 0;
         item.expires = 0;
     }
 
