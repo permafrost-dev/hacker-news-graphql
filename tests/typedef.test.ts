@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import typeDefs from '@/typedef';
+import typeDefs from '@/lib/typedef';
 import { ObjectTypeDefinitionNode } from 'graphql/language/ast';
 
 it('contains Date, StoryType, Story, Comment, User, and Query types', () => {
