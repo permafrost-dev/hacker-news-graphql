@@ -30,12 +30,23 @@ Return the first 5 top stories from HN:
 
 ```gql
 query {
-  stories(first: 5, kind: TOP}) {
+  stories(first: 5, kind: TOP) {
     title
     url
     time
+    commentCount
+    score
     author {
       id
+      karma
+    }
+    comments(first: 2) {
+      author {
+        id
+        karma
+      }
+      time
+      text
     }
   }
 }
