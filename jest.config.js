@@ -10,11 +10,15 @@ module.exports = {
     testEnvironment: 'node',
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.graphql$': '<rootDir>/tests/graphql-loader.js',
     },
     testRegex: '(/__test__/.*|/tests/.*|(\\.|/)(test|spec))\\.[tj]sx?$',
-    testPathIgnorePatterns: ['/node_modules/', '/dist/', '/server/', '/fixtures/'],
+    testPathIgnorePatterns: ['/node_modules/', '/dist/', '/server/', '/fixtures/', 'tests/graphql-loader.js'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-    moduleNameMapper: pathsToModuleNameMapper(tsConfigPaths, { prefix: `${__dirname}/` }),
+    moduleNameMapper: {
+        ...pathsToModuleNameMapper(tsConfigPaths, { prefix: `${__dirname}/` }),
+        '^([./a-zA-Z0-9$_-]+\\.graphql)$': '<rootDir>/src/$1',
+    },
 
     coverageDirectory: './coverage',
     coverageReporters: ['html', 'text'],
