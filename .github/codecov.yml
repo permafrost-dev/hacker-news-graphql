@@ -38,3 +38,4 @@ ignore:
   - "public/"
   - ".eslintrc.js"
   - "jest.config.js"
+  - "tests/graphql-loader.js"
