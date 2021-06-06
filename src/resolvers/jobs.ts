@@ -1,7 +1,7 @@
-import { MemoryCache } from '@/lib/cache/MemoryCache';
+import { Cache } from '@/lib/cache/Cache';
 import axios from 'axios';
 
-export function getResolver(storyIds, stories, cache: MemoryCache): any {
+export function getResolver(storyIds, stories, cache: Cache): any {
     const result = async (_, { first, skipText }) => {
         const kind = 'job';
 
@@ -13,6 +13,8 @@ export function getResolver(storyIds, stories, cache: MemoryCache): any {
 
         const hasKey = await cache.has(cacheKey);
         if (!hasKey) {
+            console.log(`getting ${kind}storyids from URL...`);
+
             const resp = await axios.get(`${process.env.HACKERNEWS_API_URL}/jobstories.json?limitToFirst=${first + 5}&orderBy="$key"`);
             const data: number[] = resp.data;
 
@@ -28,20 +30,26 @@ export function getResolver(storyIds, stories, cache: MemoryCache): any {
         const storyDataPromises = ids
             .map(async id => {
                 if (await cache.has(`${kind}story:${id}`)) {
-                    return null;
+                    return cache.get(`${kind}story:${id}`);
                 }
+
+                console.log(`getting story ${id} from URL...`);
 
                 return axios.get(`${process.env.HACKERNEWS_API_URL}/item/${id}.json`);
             })
             .filter(item => item !== null);
 
         (await Promise.all(storyDataPromises))
-            .map(resp => resp?.data)
+            .map((resp: any) => resp?.data)
             .filter(item => item !== null)
+            .filter(item => typeof item !== 'undefined')
             .forEach(item => {
-                cache.put(`${kind}story:${item.id}`, item, 3600);
+                try {
+                    cache.put(`${kind}story:${item.id}`, item, 3600);
+                } catch (err) {
+                    console.log(err);
+                }
             });
-
         for (const id of ids) {
             const storyItem = await cache.get(`${kind}story:${id}`);
 

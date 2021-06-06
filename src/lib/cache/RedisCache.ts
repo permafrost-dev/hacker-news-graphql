@@ -13,7 +13,7 @@ export class RedisCache extends Cache {
 
         this.prefix = keyPrefix;
 
-        this.redis = new Redis({ keyPrefix: keyPrefix });
+        this.redis = new Redis(); //{ keyPrefix: keyPrefix });
     }
 
     public destroy() {
@@ -27,13 +27,9 @@ export class RedisCache extends Cache {
     }
 
     public async get(key: string): Promise<any | null> {
-        let result = await this.redis.get(key);
+        const result = await this.redis.get(key);
 
-        if (result !== null) {
-            result = JSON.parse(result);
-        }
-
-        return new Promise(resolve => resolve(result));
+        return new Promise(resolve => resolve(JSON.parse(result)));
     }
 
     public put(key: string, value: any, ttlSeconds: number): void {

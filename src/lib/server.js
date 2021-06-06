@@ -1,9 +1,11 @@
 import { ApolloServer } from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import typeDefs from './typedef';
-import resolvers from './resolver';
+import { getResolvers } from './resolver';
 
-export const getApolloServer = isDevelopmentMode => {
+export const getApolloServer = (isDevelopmentMode, cacheDriver) => {
+    const resolvers = getResolvers(cacheDriver);
+
     const server = new ApolloServer({
         introspection: isDevelopmentMode,
         graphiql: isDevelopmentMode,
@@ -20,10 +22,10 @@ export const getApolloServer = isDevelopmentMode => {
     return server;
 };
 
-export const getServer = (app, isDevelopmentMode) => {
+export const getServer = (app, isDevelopmentMode, cacheDriver) => {
     app.use(bodyParser.json());
 
-    const server = getApolloServer(isDevelopmentMode);
+    const server = getApolloServer(isDevelopmentMode, cacheDriver);
     server.applyMiddleware({ app, path: '/graphql' });
 
     return app;

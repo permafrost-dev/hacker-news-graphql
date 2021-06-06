@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 
-import { MemoryCache } from '../lib/cache/MemoryCache';
+import { Cache } from '../lib/cache/Cache';
 import axios from 'axios';
 
-export function getResolver(cache: MemoryCache): any {
+export function getResolver(cache: Cache): any {
     const userResolver = async (_, { id }) => {
         const hasKey = await cache.has(`user:${id}`);
 
