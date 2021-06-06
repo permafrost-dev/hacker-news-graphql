@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { MemoryCache } from '../../../src/MemoryCache';
+import { MemoryCache } from '../../../src/lib/cache/MemoryCache';
 import { getResolver } from '../../../src/resolvers/Story/author';
 
 let cache: MemoryCache;

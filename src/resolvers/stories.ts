@@ -10,7 +10,8 @@ export function getResolver(topStoryIds, topStories, cache: any): any {
         const ids: number[] = [];
         const topstoryCacheKey = `${kind}storyids:${first}`;
 
-        if (!cache.has(topstoryCacheKey)) {
+        const hasTopStoryKey = await cache.has(topstoryCacheKey);
+        if (!hasTopStoryKey) {
             // console.log(`getting ${kind}storyids from URL...`);
 
             const resp = await axios.get(`${process.env.HACKERNEWS_API_URL}/${kind}stories.json?limitToFirst=${first}&orderBy="$key"`);
@@ -20,14 +21,14 @@ export function getResolver(topStoryIds, topStories, cache: any): any {
             ids.push(...data);
         }
 
-        const cacheData = cache.get(topstoryCacheKey);
+        const cacheData = await cache.get(topstoryCacheKey);
 
         ids.push(...cacheData);
         ids.splice(first);
 
         const storyDataPromises = ids
-            .map(id => {
-                if (cache.has(`${kind}story:${id}`)) {
+            .map(async id => {
+                if (await cache.has(`${kind}story:${id}`)) {
                     return null;
                 }
 
@@ -45,7 +46,7 @@ export function getResolver(topStoryIds, topStories, cache: any): any {
             });
 
         for (const id of ids) {
-            topStories.push(cache.get(`${kind}story:${id}`));
+            topStories.push(await cache.get(`${kind}story:${id}`));
         }
 
         return new Promise(resolve => resolve(topStories));

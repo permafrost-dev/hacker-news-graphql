@@ -13,7 +13,9 @@ export function getResolver(cache: any): any {
         const commentIds = parent.kids.slice(0, first);
 
         for (const id of commentIds) {
-            if (!cache.has(`comment:${id}`)) {
+            const hasKey = await cache.has(`comment:${id}`);
+
+            if (!hasKey) {
                 // console.log(`getting comment ${id} from URL...`);
 
                 const commentResp = await axios.get(`${process.env.HACKERNEWS_API_URL}/item/${id}.json`);
@@ -22,7 +24,7 @@ export function getResolver(cache: any): any {
                 cache.put(`comment:${id}`, commentData, 3600);
             }
 
-            comments.push(cache.get(`comment:${id}`));
+            comments.push(await cache.get(`comment:${id}`));
         }
 
         return new Promise(resolve => resolve(comments));

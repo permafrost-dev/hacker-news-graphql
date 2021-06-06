@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { MemoryCache } from '@/MemoryCache';
+import { MemoryCache } from '@/lib/cache/MemoryCache';
 import { getResolver } from '@/resolvers/Story/commentCount';
 
 let cache: MemoryCache;

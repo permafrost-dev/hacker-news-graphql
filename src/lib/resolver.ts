@@ -1,4 +1,4 @@
-import { MemoryCache } from '@/MemoryCache';
+import { MemoryCache } from '@/lib/cache/MemoryCache';
 import { getResolver as getCommentsResolver } from '@/resolvers/comments';
 import { getResolver as getJobsResolver } from '@/resolvers/jobs';
 import { getResolver as getStoriesResolver } from '@/resolvers/stories';

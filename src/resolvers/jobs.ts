@@ -1,4 +1,4 @@
-import { MemoryCache } from '@/MemoryCache';
+import { MemoryCache } from '@/lib/cache/MemoryCache';
 import axios from 'axios';
 
 export function getResolver(storyIds, stories, cache: MemoryCache): any {
@@ -11,7 +11,8 @@ export function getResolver(storyIds, stories, cache: MemoryCache): any {
         const ids: number[] = [];
         const cacheKey = `jobstoryids:${first}-${skipText ? 'skipText' : 'dontSkipText'}`;
 
-        if (!cache.has(cacheKey)) {
+        const hasKey = await cache.has(cacheKey);
+        if (!hasKey) {
             const resp = await axios.get(`${process.env.HACKERNEWS_API_URL}/jobstories.json?limitToFirst=${first + 5}&orderBy="$key"`);
             const data: number[] = resp.data;
 
@@ -19,14 +20,14 @@ export function getResolver(storyIds, stories, cache: MemoryCache): any {
             ids.push(...data);
         }
 
-        const cacheData = cache.get(cacheKey);
+        const cacheData = await cache.get(cacheKey);
 
         ids.push(...cacheData);
         ids.splice(first);
 
         const storyDataPromises = ids
-            .map(id => {
-                if (cache.has(`${kind}story:${id}`)) {
+            .map(async id => {
+                if (await cache.has(`${kind}story:${id}`)) {
                     return null;
                 }
 
@@ -42,7 +43,7 @@ export function getResolver(storyIds, stories, cache: MemoryCache): any {
             });
 
         for (const id of ids) {
-            const storyItem = cache.get(`${kind}story:${id}`);
+            const storyItem = await cache.get(`${kind}story:${id}`);
 
             if (!storyItem.text || !skipText) {
                 stories.push(storyItem);

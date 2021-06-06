@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { MemoryCache } from '@/MemoryCache';
+import { MemoryCache } from '@/lib/cache/MemoryCache';
 import { getResolver } from '@/resolvers/user';
 
 let cache: MemoryCache;
@@ -22,7 +22,7 @@ it('it retrieves the user data and returns it', async () => {
 it('it retrieves the user data and caches it', async () => {
     await resolver({}, { id: 'test' });
 
-    expect(cache.has('user:test')).toBeTruthy();
+    expect(await cache.has('user:test')).toBeTruthy();
 });
 
 it('it returns cached user data if cached', async () => {

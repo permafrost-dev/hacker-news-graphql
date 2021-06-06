@@ -10,4 +10,4 @@ new App()
         res.send(file.toString());
     })
     .use(sirv('./tests/fixtures'))
-    .listen(3031);
+    .listen(3031, () => console.log('listening on http://localhost:3031'));

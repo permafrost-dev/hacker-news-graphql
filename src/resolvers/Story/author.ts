@@ -3,8 +3,9 @@ import axios from 'axios';
 export function getResolver(cache: any): any {
     const authorResolver = async parent => {
         const userCacheKey = `user:${parent.by}`;
+        const hasKey = await cache.has(userCacheKey);
 
-        if (cache.has(userCacheKey)) {
+        if (hasKey) {
             return cache.get(userCacheKey);
         }
 
@@ -13,7 +14,7 @@ export function getResolver(cache: any): any {
 
         cache.put(userCacheKey, resp.data, 3600);
 
-        return new Promise(resolve => resolve(cache.get(userCacheKey)));
+        return new Promise(resolve => resolve(resp.data));
     };
 
     return authorResolver;
