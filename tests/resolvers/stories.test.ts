@@ -2,6 +2,7 @@
 
 import { MemoryCache } from '@/lib/cache/MemoryCache';
 import { getResolver } from '@/resolvers/stories';
+const hash = require('object-hash');
 
 let cache: MemoryCache;
 let resolver: any;
@@ -16,7 +17,8 @@ beforeEach(() => {
 });
 
 it('it retrieves the story data and returns it', async () => {
-    const data = await resolver({}, { first: 2, kind: 'NEW' });
+    const req = { body: { first: 2, kind: 'NEW', a: 1, b: 2 } };
+    const data = await resolver({}, { first: 2, kind: 'NEW' }, { req });
 
     for (const item of data) {
         //item.ts = 0;
@@ -27,13 +29,17 @@ it('it retrieves the story data and returns it', async () => {
 });
 
 it('it retrieves the user data and caches it', async () => {
-    await resolver({}, { first: 2, kind: 'NEW' });
+    const req = { body: { query: 'abc', vars: 'bbb' } };
+    const reqHash = hash(req.body);
 
-    expect(cache.has('newstoryids:2')).toBeTruthy();
+    await resolver({}, { first: 2, kind: 'NEW' }, { req });
+
+    expect(await cache.has(`newstoryids:2:${reqHash}`)).toBeTruthy();
 });
 
 it('it retrieves each story and caches it', async () => {
-    const data = await resolver({}, { first: 2, kind: 'NEW' });
+    const req = { body: { first: 2, kind: 'NEW', a: 1, b: 2 } };
+    const data = await resolver({}, { first: 2, kind: 'NEW' }, { req });
 
     data.forEach(item => {
         expect(cache.has(`newstory:${item.id}`)).toBeTruthy();

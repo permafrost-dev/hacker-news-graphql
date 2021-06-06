@@ -22,5 +22,5 @@ it('it retrieves the comment data and returns it', async () => {
 it('it retrieves the comment data and caches it', async () => {
     await resolver({ kids: [27397733] }, { first: 1 });
 
-    expect(cache.has('comment:27397733')).toBeTruthy();
+    expect(await cache.has('comment:27397733')).toBeTruthy();
 });

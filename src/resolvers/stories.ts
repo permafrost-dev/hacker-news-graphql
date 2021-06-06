@@ -1,17 +1,22 @@
 import axios from 'axios';
+const hash = require('object-hash');
 
 export function getResolver(topStoryIds, topStories, cache: any): any {
-    const stories = async (_, { first, kind }) => {
+    const stories = async (_, { first, kind }, { req }) => {
         topStoryIds.splice(0, topStoryIds.length);
         topStories.splice(0, topStories.length);
 
         kind = `${kind}`.toLowerCase();
+        const queryHash = hash(req.body);
 
         const ids: number[] = [];
-        const topstoryCacheKey = `${kind}storyids:${first}`;
+        const storyIdsCacheKey = `${kind}storyids:${first}:${queryHash}`;
 
-        const hasTopStoryKey = await cache.has(topstoryCacheKey);
-        if (!hasTopStoryKey) {
+        console.log('storyIdsCacheKey = ', storyIdsCacheKey);
+
+        const hasStoryIdsKey = await cache.has(storyIdsCacheKey);
+
+        if (!hasStoryIdsKey) {
             console.log(`getting ${kind}storyids from URL...`);
 
             const resp = await axios.get(`${process.env.HACKERNEWS_API_URL}/${kind}stories.json?limitToFirst=${first}&orderBy="$key"`);
@@ -25,11 +30,11 @@ export function getResolver(topStoryIds, topStories, cache: any): any {
 
             const cacheTtl = cacheTtlMap[kind] || 60;
 
-            cache.put(topstoryCacheKey, data, cacheTtl);
+            cache.put(storyIdsCacheKey, data, cacheTtl);
             ids.push(...data);
         }
 
-        const cacheData = await cache.get(topstoryCacheKey);
+        const cacheData = await cache.get(storyIdsCacheKey);
 
         ids.push(...cacheData);
         ids.splice(first);

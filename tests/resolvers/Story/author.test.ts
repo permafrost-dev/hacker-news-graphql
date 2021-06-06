@@ -23,5 +23,5 @@ it('it retrieves the user data and returns it', async () => {
 it('it retrieves the user data and caches it', async () => {
     await resolver({ by: 'test' });
 
-    expect(cache.has('user:test')).toBeTruthy();
+    expect(await cache.has('user:test')).toBeTruthy();
 });

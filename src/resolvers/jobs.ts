@@ -1,17 +1,24 @@
 import { Cache } from '@/lib/cache/Cache';
 import axios from 'axios';
+const hash = require('object-hash');
 
 export function getResolver(storyIds, stories, cache: Cache): any {
-    const result = async (_, { first, skipText }) => {
+    const result = async (_, { first, skipText }, { req }) => {
         const kind = 'job';
 
         storyIds.splice(0, storyIds.length);
         stories.splice(0, stories.length);
 
+        const queryHash = hash(req.body);
+
         const ids: number[] = [];
-        const cacheKey = `jobstoryids:${first}-${skipText ? 'skipText' : 'dontSkipText'}`;
+        //const cacheKey = `jobstoryids:${first}-${skipText ? 'skipText' : 'dontSkipText'}`;
+        const cacheKey = `jobstoryids:${first}:${queryHash}`;
+
+        console.log('cacheKey = ', cacheKey);
 
         const hasKey = await cache.has(cacheKey);
+
         if (!hasKey) {
             console.log(`getting ${kind}storyids from URL...`);
 
