@@ -1,0 +1,9 @@
+version: '3.2'
+
+services:
+  redis:
+    image: redis:6-alpine
+    container_name: hngql-redis
+    restart: unless-stopped
+    network_mode: "host"
+
