@@ -1,0 +1,11 @@
+type Job {
+  author: User
+  by: String
+  id: Int!
+  score: Int
+  text: String
+  time: Date
+  title: String
+  type: String
+  url: String
+}

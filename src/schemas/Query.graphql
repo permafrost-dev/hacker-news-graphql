@@ -1,4 +1,5 @@
 type Query {
-  stories(first: Int!, kind: StoryType!): [Story]
-  user(id: String!): User
+    jobs(first: Int!, skipText: Boolean = True): [Job]!
+    stories(first: Int!, kind: StoryType!): [Story]!
+    user(id: String!): User
 }
