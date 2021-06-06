@@ -12,7 +12,11 @@ Create a `.env` file in the project directory:
 NODE_ENV=development
 PORT=3000
 HACKERNEWS_API_URL=https://hacker-news.firebaseio.com/v0
+CACHE_DRIVER=memory
 ```
+
+_The `CACHE_DRIVER` variable can be either `memory` or `redis` - if `redis`, then a Redis service is assumed to be running._
+
 
 Then install the dependencies and run `start:dev`, which both builds the application using `esbuild` and runs it:
 
