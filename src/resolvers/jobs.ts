@@ -60,7 +60,7 @@ export function getResolver(storyIds, stories, cache: Cache): any {
         for (const id of ids) {
             const storyItem = await cache.get(`${kind}story:${id}`);
 
-            if (!storyItem.text || !skipText) {
+            if (!skipText || typeof storyItem['text'] === 'undefined' || storyItem['text'] === null) {
                 stories.push(storyItem);
             }
         }
