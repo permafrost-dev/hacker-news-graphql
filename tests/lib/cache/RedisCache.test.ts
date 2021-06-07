@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 
 import { RedisCache } from '@/lib/cache/RedisCache';
+const Redis = require('ioredis');
 
 let cache: RedisCache;
 
@@ -37,27 +38,25 @@ it('determines if an item is in the cache', async () => {
     expect(await cache.has('two')).toBeFalsy();
 });
 
-// it('purges expired items', () => {
-//     cache.put('one', 1, 10);
-//     cache.map['one'].expires = 0;
+it('prefixes all keys with a prefix', async () => {
+    const testRedis = new Redis();
+    const customCache = new RedisCache('myprefix');
 
-//     cache.purge();
+    try {
+        customCache.put('one', 1, 10);
 
-//     expect(cache.map['one']).toBeUndefined();
-// });
+        expect(await customCache.has('one')).toBeTruthy();
+        expect(await testRedis.exists('myprefix:one')).toBeTruthy();
+    } finally {
+        customCache.destroy();
+        testRedis.disconnect();
+    }
+});
 
-// it('purges expired entries before returning an item', async () => {
-//     cache.put('one', 1, 10);
-//     cache.map['one'].expires -= 15 * 1000;
+it('purges expired items', () => {
+    expect(cache.purge()).toBeTruthy();
+});
 
-//     expect(await cache.get('one')).toBeNull();
-//     expect(cache.map['one']).toBeUndefined();
-// });
-
-// it('purges expired entries before checking if an item exists', async () => {
-//     cache.put('one', 1, 10);
-//     cache.map['one'].expires -= 15 * 1000;
-
-//     expect(await cache.has('one')).toBeFalsy();
-//     expect(cache.map['one']).toBeUndefined();
-// });
+it('clears items', () => {
+    expect(cache.clear()).toBeTruthy();
+});

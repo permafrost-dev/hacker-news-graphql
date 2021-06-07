@@ -14,5 +14,5 @@ export abstract class Cache {
 
     public abstract purge();
 
-    public abstract clear();
+    public abstract clear(): boolean;
 }

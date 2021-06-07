@@ -13,7 +13,7 @@ export class RedisCache extends Cache {
 
         this.prefix = keyPrefix;
 
-        this.redis = new Redis(); //{ keyPrefix: keyPrefix });
+        this.redis = new Redis({ keyPrefix: keyPrefix });
     }
 
     public destroy() {
@@ -37,10 +37,10 @@ export class RedisCache extends Cache {
     }
 
     public purge() {
-        //
+        return true;
     }
 
     public clear() {
-        //
+        return true;
     }
 }

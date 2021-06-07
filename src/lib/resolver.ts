@@ -1,3 +1,4 @@
+import { Cache } from './cache/Cache';
 import { RedisCache } from './cache/RedisCache';
 import { MemoryCache } from './cache/MemoryCache';
 import { getResolver as getCommentsResolver } from '@/resolvers/comments';
@@ -8,12 +9,23 @@ import { getResolver as getCommentCountResolver } from '@/resolvers/Story/commen
 import { getResolver as getUserResolver } from '@/resolvers/user';
 import { getScalarType as getDateScalar } from '@/scalars/Date';
 
+export const getCacheInstance = (driver: string): Cache => {
+    switch (driver) {
+        case 'redis':
+            return new RedisCache();
+
+        case 'memory':
+        default:
+            return new MemoryCache();
+    }
+};
+
 export const getResolvers = (cacheDriver: string) => {
     const storyIds: number[] = [];
     const stories: Record<string, any>[] = [];
     const jobIds: number[] = [];
     const jobs: Record<string, any>[] = [];
-    const cache = cacheDriver === 'redis' ? new RedisCache() : new MemoryCache();
+    const cache = getCacheInstance(cacheDriver);
 
     const dateScalar = getDateScalar();
 

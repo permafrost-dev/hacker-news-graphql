@@ -57,3 +57,20 @@ it('purges expired entries before checking if an item exists', async () => {
     expect(await cache.has('one')).toBeFalsy();
     expect(cache.map['one']).toBeUndefined();
 });
+
+it('prefixes all keys with a prefix', async () => {
+    const customCache = new MemoryCache('myprefix');
+
+    try {
+        customCache.put('one', 1, 10);
+
+        expect(await customCache.has('one')).toBeTruthy();
+        expect(customCache.map['myprefix:one']).not.toBeUndefined();
+    } finally {
+        customCache.destroy();
+    }
+});
+
+it('clears items', () => {
+    expect(cache.clear()).toBeTruthy();
+});

@@ -59,6 +59,6 @@ export class MemoryCache extends Cache {
     }
 
     public clear() {
-        //
+        return true;
     }
 }
