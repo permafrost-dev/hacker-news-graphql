@@ -25,7 +25,17 @@ it('it retrieves the user data and caches it', async () => {
     expect(await cache.has('user:test')).toBeTruthy();
 });
 
-it('it returns cached user data if cached', async () => {
+it('returns cached user data if cached #1', async () => {
+    await resolver({}, { id: 'test' });
+
+    expect(await cache.has('user:test')).toBeTruthy();
+
+    const data = await resolver({}, { id: 'test' });
+
+    expect(data.id).toBe('test');
+});
+
+it('returns cached user data if cached #2', async () => {
     await resolver({}, { id: 'test' });
 
     cache.map['user:test'].value.karma = 9876;
