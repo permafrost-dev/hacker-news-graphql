@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it retrieves each job story and caches it 1`] = `
+Object {
+  "jobstory:27414470": Object {
+    "expires": 0,
+    "ts": 0,
+    "value": Object {
+      "by": "yiggydyang",
+      "id": 27414470,
+      "score": 1,
+      "time": 1622998836,
+      "title": "PocketSuite Is hiring Lead Engineers, Product Designers to enrich small business",
+      "type": "job",
+      "url": "https://www.ycombinator.com/companies/pocketsuite",
+    },
+  },
+  "jobstory:27421523": Object {
+    "expires": 0,
+    "ts": 0,
+    "value": Object {
+      "by": "ifc",
+      "id": 27421523,
+      "score": 1,
+      "time": 1623067272,
+      "title": "Qventus (YC W15) Is Hiring Data Platform Engineers",
+      "type": "job",
+      "url": "https://jobs.lever.co/qventus/c0d604cf-ec1c-48ea-847d-5ffc7a67698d",
+    },
+  },
+  "jobstoryids:2:d102c7c5187b3dadeb7b29555a5d74d28a8cd87d": Object {
+    "expires": 0,
+    "ts": 0,
+    "value": Array [
+      27421523,
+      27414470,
+    ],
+  },
+}
+`;
+
+exports[`it retrieves the story data and returns it 1`] = `
+Array [
+  Object {
+    "by": "ifc",
+    "expires": 0,
+    "id": 27421523,
+    "score": 1,
+    "time": 1623067272,
+    "title": "Qventus (YC W15) Is Hiring Data Platform Engineers",
+    "type": "job",
+    "url": "https://jobs.lever.co/qventus/c0d604cf-ec1c-48ea-847d-5ffc7a67698d",
+  },
+  Object {
+    "by": "yiggydyang",
+    "expires": 0,
+    "id": 27414470,
+    "score": 1,
+    "time": 1622998836,
+    "title": "PocketSuite Is hiring Lead Engineers, Product Designers to enrich small business",
+    "type": "job",
+    "url": "https://www.ycombinator.com/companies/pocketsuite",
+  },
+]
+`;

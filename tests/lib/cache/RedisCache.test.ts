@@ -14,17 +14,21 @@ afterEach(() => {
 });
 
 it('adds items to the cache', async () => {
-    expect(await cache.has('one')).toBeFalsy();
+    const key = 'one-' + (Math.random() * 10000).toString();
 
-    cache.put('one', 1, 10);
+    expect(await cache.has(key)).toBeFalsy();
 
-    expect(await cache.get('one')).toBe(1);
+    cache.put(key, 1, 10);
+
+    expect(await cache.get(key)).toBe(1);
 });
 
 it('returns an item in the cache', async () => {
-    cache.put('one', 1, 10);
+    const key = 'one-' + (Math.random() * 10000).toString();
 
-    expect(await cache.get('one')).toStrictEqual(1);
+    cache.put(key, 1, 10);
+
+    expect(await cache.get(key)).toStrictEqual(1);
 });
 
 it('returns null for an item not in the cache', async () => {
@@ -32,10 +36,12 @@ it('returns null for an item not in the cache', async () => {
 });
 
 it('determines if an item is in the cache', async () => {
-    cache.put('one', 1, 10);
+    const keys = ['one-' + (Math.random() * 10000).toString(), 'two-' + (Math.random() * 10000).toString()];
 
-    expect(await cache.has('one')).toBeTruthy();
-    expect(await cache.has('two')).toBeFalsy();
+    cache.put(keys[0], 1, 10);
+
+    expect(await cache.has(keys[0])).toBeTruthy();
+    expect(await cache.has(keys[1])).toBeFalsy();
 });
 
 it('prefixes all keys with a prefix', async () => {
